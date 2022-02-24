@@ -1,7 +1,7 @@
 package models;
 
 public class Skill{
-    private int level;
+    int level;
     String name;
     void levelUp(){
         level++;
