@@ -6,6 +6,8 @@ public class Contributor {
     int noOfSkills;
     ArrayList<Skill> skills;
     private  Project currentAssigned;
+    private Role currentRole;
+
     public Contributor(String name,int noOfSkills){
         this.name=name;
         this.noOfSkills=noOfSkills;
@@ -15,9 +17,12 @@ public class Contributor {
         Skill newSkill = new Skill(name, level);
         skills.add(newSkill);
     }
-    void assign(Project p){
-        p.assignedContributors.add(this);
-        currentAssigned=p;
+    void assign(Project p, Role r){
+        if(currentAssigned == null) {
+            p.assignedContributors.add(this);
+            currentRole = r;
+            currentAssigned = p;
+        }
     }
     boolean canWork(Role role){
         for(Skill mySkill : skills){
@@ -41,6 +46,20 @@ public class Contributor {
     }
     boolean canMentor(Role role){
         return canWork(role);
+    }
+
+    public void complete() {
+        if(currentAssigned != null) {
+            for(Skill skill : skills) {
+                if (currentRole.name.equals(skill.name)) {
+                    if(currentRole.level >= skill.level) {
+                        skill.levelUp();
+                    }
+                }
+            }
+            currentAssigned = null;
+            currentRole = null;
+        }
     }
 
     @Override
