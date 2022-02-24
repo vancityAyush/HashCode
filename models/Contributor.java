@@ -17,7 +17,7 @@ public class Contributor {
     boolean canWork(Role role){
         for(Skill skill : skills){
             if(role.name==skill.name){
-                if(role.level>=skill.level)
+                if(role.level<=skill.level)
                     return true;
             }
         }
@@ -31,6 +31,9 @@ public class Contributor {
             }
         }
         return false;
+    }
+    boolean canMentor(Role role){
+        return canWork(role);
     }
 
     @Override

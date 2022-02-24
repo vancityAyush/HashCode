@@ -10,4 +10,9 @@ public class Skill{
         this.level = level;
         this.name = name;
     }
+
+    @Override
+    public boolean equals(Role role) {
+        return name==role.name;
+    }
 }
