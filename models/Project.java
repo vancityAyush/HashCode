@@ -22,7 +22,11 @@ public class Project {
 
     @Override
     public String toString() {
-        return "Project : "+name+"\t"+"Best Before  : "+bestBefore;
+        String out="Project : "+name+"\t"+"Best Before  : "+bestBefore+"\n";
+        for(Role r : roles){
+            out+="Role : " + r.name+"\t"+"Level : "+r.level+"\n";
+        }
+        return out;
 
     }
 }
