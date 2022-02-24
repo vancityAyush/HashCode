@@ -1,0 +1,123 @@
+Index: models/Contributor.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package models;\r\n\r\nimport java.util.ArrayList;\r\npublic class Contributor {\r\n    String name;\r\n    int noOfSkills;\r\n    ArrayList<Skill> skills;\r\n    Contributor(String name,int noOfSkills){\r\n        this.name=name;\r\n        this.noOfSkills=noOfSkills;\r\n    }\r\n    void addSkill(String name, int level){\r\n        Skill newSkill = new Skill(level, name);\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/models/Contributor.java b/models/Contributor.java
+--- a/models/Contributor.java	(revision 55a42cf81e9da0aa075ea8d81006279c79914fc4)
++++ b/models/Contributor.java	(date 1645730278224)
+@@ -11,6 +11,16 @@
+     }
+     void addSkill(String name, int level){
+         Skill newSkill = new Skill(level, name);
+-
++        skills.add(newSkill);
+     }
++    boolean canWork(Role role){
++        for(Skill skill : skills){
++            if(role.name==skill.name){
++                if(role.level>=skill.level)
++                    return true;
++            }
++        }
++        return false;
++    }
++    boolean canWorkWithMentor(Role role,)
+ }
+Index: models/Skill.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package models;\r\n\r\npublic class Skill{\r\n    int level;\r\n    String name;\r\n    void levelUp(){\r\n        level++;\r\n    }\r\n\r\n    public Skill(int level, String name) {\r\n        this.level = level;\r\n        this.name = name;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/models/Skill.java b/models/Skill.java
+--- a/models/Skill.java	(revision 55a42cf81e9da0aa075ea8d81006279c79914fc4)
++++ b/models/Skill.java	(date 1645729775109)
+@@ -6,7 +6,6 @@
+     void levelUp(){
+         level++;
+     }
+-
+     public Skill(int level, String name) {
+         this.level = level;
+         this.name = name;
+Index: models/Role.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/models/Role.java b/models/Role.java
+new file mode 100644
+--- /dev/null	(date 1645729899127)
++++ b/models/Role.java	(date 1645729899127)
+@@ -0,0 +1,7 @@
++package models;
++
++public class Role extends Skill{
++    public Role(int level, String name) {
++        super(level, name);
++    }
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"f77a604b-34ce-47cb-ad9c-f26370573c68\" name=\"Changes\" comment=\"one\">\r\n      <change afterPath=\"$PROJECT_DIR$/models/Contributor.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Skill.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/models/Skill.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/package.bluej\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/package.bluej\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"25ZKHT0XsmPY1NSiHXdYl0MWuk5\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/../HashCode2022\" />\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"f77a604b-34ce-47cb-ad9c-f26370573c68\" name=\"Changes\" comment=\"\" />\r\n      <created>1645729081084</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1645729081084</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"one\">\r\n      <created>1645729483596</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1645729483596</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"one\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"one\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 55a42cf81e9da0aa075ea8d81006279c79914fc4)
++++ b/.idea/workspace.xml	(date 1645729899174)
+@@ -1,10 +1,11 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="f77a604b-34ce-47cb-ad9c-f26370573c68" name="Changes" comment="one">
+-      <change afterPath="$PROJECT_DIR$/models/Contributor.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/models/Skill.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/package.bluej" beforeDir="false" afterPath="$PROJECT_DIR$/package.bluej" afterDir="false" />
++    <list default="true" id="f77a604b-34ce-47cb-ad9c-f26370573c68" name="Changes" comment="model">
++      <change afterPath="$PROJECT_DIR$/models/Role.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/models/Contributor.java" beforeDir="false" afterPath="$PROJECT_DIR$/models/Contributor.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/models/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/models/Skill.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -30,7 +31,6 @@
+   <component name="PropertiesComponent">
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+     <property name="last_opened_file_path" value="$PROJECT_DIR$/../HashCode2022" />
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+@@ -49,7 +49,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1645729483596</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="model">
++      <created>1645729764557</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1645729764557</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -65,6 +72,7 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="one" />
+-    <option name="LAST_COMMIT_MESSAGE" value="one" />
++    <MESSAGE value="model" />
++    <option name="LAST_COMMIT_MESSAGE" value="model" />
+   </component>
+ </project>
+\ No newline at end of file

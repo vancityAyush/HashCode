@@ -49,17 +49,27 @@ public class Contributor {
     }
 
     public void complete() {
+        boolean isLevelledUp=false;
         if(currentAssigned != null) {
             for(Skill skill : skills) {
                 if (currentRole.name.equals(skill.name)) {
                     if(currentRole.level >= skill.level) {
                         skill.levelUp();
+                        isLevelledUp=true;
                     }
                 }
             }
-            currentAssigned = null;
-            currentRole = null;
+            if(currentRole.level==1&&!isLevelledUp){
+                skills.add(currentRole);
+                isLevelledUp=true;
+            }
         }
+        System.out.println(name+" completed successfully");
+        if(isLevelledUp){
+            System.out.println(name+" improved "+currentRole.name);
+        }
+        currentAssigned = null;
+        currentRole = null;
     }
 
     @Override

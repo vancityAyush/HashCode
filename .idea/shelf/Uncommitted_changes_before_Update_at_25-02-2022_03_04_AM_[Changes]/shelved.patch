@@ -1,0 +1,85 @@
+Index: main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import models.Contributor;\r\nimport models.Project;\r\nimport models.Role;\r\n\r\nimport java.util.*;\r\nimport java.io.*;\r\n\r\nclass main{\r\n    static int nContributors;\r\n    static int nProjects;\r\n    static ArrayList<Contributor> contributorList = new ArrayList<>();\r\n    static ArrayList<Project> projectList = new ArrayList<>();\r\n    static ArrayList<Role> roleList = new ArrayList<>();\r\n\r\n    public static void input() {\r\n        try{\r\n            FileInputStream fstream=new FileInputStream(\"HashCode/input/input_file.txt\");\r\n            DataInputStream in=new DataInputStream(fstream);\r\n            BufferedReader br=new BufferedReader(new InputStreamReader(in));\r\n            String strLine=br.readLine();\r\n\r\n            String[] tokens = strLine.split(\" \");\r\n\r\n            nContributors = Integer.parseInt(tokens[0]);\r\n            nProjects = Integer.parseInt(tokens[1]);\r\n\r\n            for(int i = 0; i < nContributors; ++i) {  //CONTRIBUTOR LOOP\r\n                strLine = br.readLine();\r\n                tokens = strLine.split(\" \");\r\n\r\n                String contributorName = tokens[0];\r\n                int nSkills = Integer.parseInt(tokens[1]);\r\n                //System.out.println(contributorName + \" \" + nSkills + 1);\r\n                Contributor contributorObject = new Contributor(contributorName, nSkills);\r\n\r\n                for(int j=0; j<nSkills; ++j) { // SKILL LOOP\r\n                    strLine = br.readLine();\r\n                    tokens = strLine.split(\" \");\r\n\r\n                    String skillName = tokens[0];\r\n                    int skillLevel = Integer.parseInt(tokens[1]);\r\n                    contributorObject.addSkill(skillName, skillLevel);\r\n                }\r\n                contributorList.add(contributorObject);\r\n            }\r\n\r\n            for(int i=0; i<nProjects; ++i) {\r\n                strLine = br.readLine();\r\n                tokens = strLine.split(\" \");\r\n\r\n                String projectName = tokens[0];\r\n                int noOfDays = Integer.parseInt(tokens[1]);\r\n                int score = Integer.parseInt(tokens[2]);\r\n                int bestBefore = Integer.parseInt(tokens[3]);\r\n                int noOfRoles = Integer.parseInt(tokens[4]);\r\n\r\n                Project tempObject = new Project(projectName, noOfDays, score, bestBefore, noOfRoles);\r\n\r\n                for(int j=0; j<noOfRoles; ++j) {\r\n                    strLine = br.readLine();\r\n\r\n                    tokens = strLine.split(\" \");\r\n                    tempObject.addRole(tokens[0], Integer.parseInt(tokens[1]));\r\n\r\n                }\r\n                System.out.println(tempObject.toString());\r\n            }\r\n            in.close();\r\n        }\r\n        catch (Exception e) {\r\n            System.out.println(e.getMessage());\r\n        }\r\n    }\r\n\r\n    public static void main(String args[]){\r\n        input();\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.java b/main.java
+--- a/main.java	(revision b4bf00150054177f3c6104a69814c3a9d0355fc4)
++++ b/main.java	(date 1645738432888)
+@@ -75,5 +75,6 @@
+     public static void main(String args[]){
+         input();
+ 
++
+     }
+ }
+\ No newline at end of file
+Index: models/Skill.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package models;\r\n\r\npublic class Skill{\r\n    int level;\r\n    String name;\r\n    void levelUp(){\r\n        level++;\r\n    }\r\n    public Skill(String name, int level) {\r\n        this.level = level;\r\n        this.name = name;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Role role) {\r\n        return name==role.name;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/models/Skill.java b/models/Skill.java
+--- a/models/Skill.java	(revision b4bf00150054177f3c6104a69814c3a9d0355fc4)
++++ b/models/Skill.java	(date 1645738432898)
+@@ -11,7 +11,6 @@
+         this.name = name;
+     }
+ 
+-    @Override
+     public boolean equals(Role role) {
+         return name==role.name;
+     }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"f77a604b-34ce-47cb-ad9c-f26370573c68\" name=\"Changes\" comment=\"contributor done\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/models/Contributor.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/models/Contributor.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/models/Project.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/models/Project.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/models/Skill.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/models/Skill.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"25ZKHT0XsmPY1NSiHXdYl0MWuk5\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/input\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\elias\\Coding\\HashCode\\input\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"main\" />\r\n      <module name=\"HashCode\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"f77a604b-34ce-47cb-ad9c-f26370573c68\" name=\"Changes\" comment=\"\" />\r\n      <created>1645729081084</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1645729081084</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"one\">\r\n      <created>1645729483596</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1645729483596</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"model\">\r\n      <created>1645729764557</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1645729764557</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"model\">\r\n      <created>1645731229589</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1645731229589</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"model\">\r\n      <created>1645731697730</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1645731697730</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"model\">\r\n      <created>1645731999152</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1645731999152</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"model\">\r\n      <created>1645734781036</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1645734781036</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"model\">\r\n      <created>1645735724549</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1645735724549</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"contributor done\">\r\n      <created>1645736115503</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1645736115503</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"contributor done\">\r\n      <created>1645736563336</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1645736563336</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"10\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"one\" />\r\n    <MESSAGE value=\"model\" />\r\n    <MESSAGE value=\"contributor done\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"contributor done\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision b4bf00150054177f3c6104a69814c3a9d0355fc4)
++++ b/.idea/workspace.xml	(date 1645738433002)
+@@ -1,10 +1,8 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="f77a604b-34ce-47cb-ad9c-f26370573c68" name="Changes" comment="contributor done">
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/models/Contributor.java" beforeDir="false" afterPath="$PROJECT_DIR$/models/Contributor.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/models/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/models/Project.java" afterDir="false" />
++    <list default="true" id="f77a604b-34ce-47cb-ad9c-f26370573c68" name="Changes" comment="assigned done">
++      <change beforePath="$PROJECT_DIR$/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/models/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/models/Skill.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -133,7 +131,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1645736563336</updated>
+     </task>
+-    <option name="localTasksCounter" value="10" />
++    <task id="LOCAL-00010" summary="assigned done">
++      <created>1645738194294</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1645738194294</updated>
++    </task>
++    <option name="localTasksCounter" value="11" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -151,6 +156,7 @@
+     <MESSAGE value="one" />
+     <MESSAGE value="model" />
+     <MESSAGE value="contributor done" />
+-    <option name="LAST_COMMIT_MESSAGE" value="contributor done" />
++    <MESSAGE value="assigned done" />
++    <option name="LAST_COMMIT_MESSAGE" value="assigned done" />
+   </component>
+ </project>
+\ No newline at end of file
