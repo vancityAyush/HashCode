@@ -14,7 +14,7 @@ class main{
 
     public static void input() {
         try{
-            FileInputStream fstream=new FileInputStream("HashCode/input/input_file.txt");
+            FileInputStream fstream=new FileInputStream("input/a_an_example.in.txt");
             DataInputStream in=new DataInputStream(fstream);
             BufferedReader br=new BufferedReader(new InputStreamReader(in));
             String strLine=br.readLine();
@@ -54,16 +54,16 @@ class main{
                 int bestBefore = Integer.parseInt(tokens[3]);
                 int noOfRoles = Integer.parseInt(tokens[4]);
 
-                Project tempObject = new Project(projectName, noOfDays, score, bestBefore, noOfRoles);
+                Project projectObject = new Project(projectName, noOfDays, score, bestBefore, noOfRoles);
 
                 for(int j=0; j<noOfRoles; ++j) {
                     strLine = br.readLine();
 
                     tokens = strLine.split(" ");
-                    tempObject.addRole(tokens[0], Integer.parseInt(tokens[1]));
+                    projectObject.addRole(tokens[0], Integer.parseInt(tokens[1]));
 
                 }
-                System.out.println(tempObject.toString());
+                projectList.add(projectObject);
             }
             in.close();
         }
@@ -75,6 +75,9 @@ class main{
     public static void main(String args[]){
         input();
         Project obj = projectList.get(1);
-        obj.assign(contributorList.get(0), obj.roles.get(0));
+        Contributor anna = contributorList.get(0);
+        Contributor bob = contributorList.get(1);
+        obj.assign(anna, obj.roles.get(1));
+        obj.assign(bob,obj.roles.get(0));
     }
 }

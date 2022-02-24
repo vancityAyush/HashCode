@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f77a604b-34ce-47cb-ad9c-f26370573c68" name="Changes" comment="contributor done">
+    <list default="true" id="f77a604b-34ce-47cb-ad9c-f26370573c68" name="Changes" comment="assigned done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/a_an_example.in.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input/a_an_example.in.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Contributor.java" beforeDir="false" afterPath="$PROJECT_DIR$/models/Contributor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/models/Project.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/models/Skill.java" afterDir="false" />
@@ -21,7 +23,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -133,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645736563336</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="assigned done">
+      <created>1645738194294</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1645738194294</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,6 +159,14 @@
     <MESSAGE value="one" />
     <MESSAGE value="model" />
     <MESSAGE value="contributor done" />
-    <option name="LAST_COMMIT_MESSAGE" value="contributor done" />
+    <MESSAGE value="assigned done" />
+    <option name="LAST_COMMIT_MESSAGE" value="assigned done" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="bob.skills" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

@@ -1,7 +1,7 @@
 package models;
 
 public class Skill{
-    int level;
+    private int level;
     String name;
     void levelUp(){
         level++;
@@ -11,7 +11,6 @@ public class Skill{
         this.name = name;
     }
 
-    @Override
     public boolean equals(Role role) {
         return name==role.name;
     }

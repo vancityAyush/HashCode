@@ -24,15 +24,18 @@ public class Project {
 
     public boolean assign(Contributor contributor, Role role){  // Assign contributor to role
         if(contributor.canWork(role)){
-            assignedContributors.add(contributor);
+            contributor.assign(this);
+            System.out.println(contributor.name+" assigned to "+role.name+" for project "+name);
             return true;
         }
         for(Contributor assigned : assignedContributors){
             if(assigned.canMentor(role) && contributor.canWorkWithMentor(role)){
-                assignedContributors.add(contributor);
+                contributor.assign(this);
+                System.out.println(contributor.name+" assigned to "+role.name+" with mentor "+assigned.name+" for project "+name);
                 return true;
             }
         }
+        System.out.println(contributor.name+" cannot be assigned to "+role.name+" for project "+name);
         return false;
     }
     @Override
