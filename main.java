@@ -1,25 +1,50 @@
+import models.Contributor;
+import models.Role;
+
 import java.util.*;
 import java.io.*;
-
-import models.*;
 
 class main{
     static int nContributors;
     static int nProjects;
+    static ArrayList<Contributor> contributorList;
 
     public static void input() {
         try{
-            FileInputStream fstream=new FileInputStream("./input/input_file.txt");
+            FileInputStream fstream=new FileInputStream("HashCode/input/input_file.txt");
             DataInputStream in=new DataInputStream(fstream);
             BufferedReader br=new BufferedReader(new InputStreamReader(in));
             String strLine=br.readLine();
 
-            System.out.println(strLine);
+            String[] tokens = strLine.split(" ");
+
+            nContributors = Integer.parseInt(tokens[0]);
+            nProjects = Integer.parseInt(tokens[1]);
+
+            for(int i = 0; i < nContributors; ++i) {
+                strLine = br.readLine();
+                tokens = strLine.split(" ");
+
+                String contributorName = tokens[0];
+                int nSkills = Integer.parseInt(tokens[1]);
+                //System.out.println(contributorName + " " + nSkills + 1);
+                Contributor contributorObject = new Contributor(contributorName, nSkills);
+
+                for(int j=0; j<nSkills; ++j) {
+                    tokens = strLine.split(" ");
+
+                    String skillName = tokens[0];
+                    int skillLevel = Integer.parseInt(tokens[1]);
+
+                    contributorObject.addSkill(skillName, skillLevel);
+                }
+                //contributorList.add(new Contributor(tokens[0], ));
+            }
 
             in.close();
         }
         catch (Exception e) {
-            System.out.println("Something went wrong!");
+            System.out.println(e.getMessage());
         }
     }
 

@@ -6,7 +6,7 @@ public class Skill{
     void levelUp(){
         level++;
     }
-    public Skill(int level, String name) {
+    public Skill(String name, int level) {
         this.level = level;
         this.name = name;
     }
