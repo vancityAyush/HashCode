@@ -79,5 +79,7 @@ class main{
         Contributor bob = contributorList.get(1);
         obj.assign(anna, obj.roles.get(1));
         obj.assign(bob,obj.roles.get(0));
+        anna.complete();
+        bob.complete();
     }
 }

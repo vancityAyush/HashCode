@@ -5,8 +5,7 @@ public class Contributor {
     String name;
     int noOfSkills;
     ArrayList<Skill> skills;
-    private  Project currentAssigned;
-    private Role currentRole;
+    Role currentRole;
 
     public Contributor(String name,int noOfSkills){
         this.name=name;
@@ -17,13 +16,13 @@ public class Contributor {
         Skill newSkill = new Skill(name, level);
         skills.add(newSkill);
     }
-    void assign(Project p, Role r){
-        if(currentAssigned == null) {
-            p.assignedContributors.add(this);
-            currentRole = r;
-            currentAssigned = p;
-        }
-    }
+//    void assign(Project p, Role r){
+//        if(currentAssigned == null) {
+//            p.assignedContributors.add(this);
+//            currentRole = r;
+//            currentAssigned = p;
+//        }
+//    }
     boolean canWork(Role role){
         for(Skill mySkill : skills){
             if(role.name.equals(mySkill.name)){
@@ -49,21 +48,23 @@ public class Contributor {
     }
 
     public void complete() {
-        if(currentAssigned != null) {
+        if(currentRole != null) {
             for(Skill skill : skills) {
                 if (currentRole.name.equals(skill.name)) {
                     if(currentRole.level >= skill.level) {
                         skill.levelUp();
+                        System.out.println(name+" successfully completed "+ currentRole+ " at "+ currentRole.projectThisRoleBelongsTo);
+                        currentRole = null;
+                        return;
                     }
                 }
+
             }
-            currentAssigned = null;
-            currentRole = null;
         }
     }
 
     @Override
     public String toString() {
-        return name+"\t"+noOfSkills+"\t";
+        return name;
     }
 }

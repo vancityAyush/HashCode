@@ -24,13 +24,13 @@ public class Project {
 
     public boolean assign(Contributor contributor, Role role){  // Assign contributor to role
         if(contributor.canWork(role)){
-            contributor.assign(this, role);
+            role.assignRole(contributor,this);
             System.out.println(contributor.name+" assigned to "+role.name+" for project "+name);
             return true;
         }
         for(Contributor assigned : assignedContributors){
             if(assigned.canMentor(role) && contributor.canWorkWithMentor(role)){
-                contributor.assign(this, role);
+                role.assignRoleWithMentor(contributor,this);
                 System.out.println(contributor.name+" assigned to "+role.name+" with mentor "+assigned.name+" for project "+name);
                 return true;
             }
@@ -40,11 +40,7 @@ public class Project {
     }
     @Override
     public String toString() {
-        String out="Project : "+name+"\t"+"Best Before  : "+bestBefore+"\n";
-        for(Role r : roles){
-            out+="Role : " + r.name+"\t"+"Level : "+r.level+"\n";
-        }
-        return out;
+        return name;
 
     }
 }
