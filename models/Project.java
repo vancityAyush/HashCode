@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Project {
     String name;
     int daysToComplete,score,bestBefore,noOfRoles;
-    ArrayList<Role> roles;
+    public ArrayList<Role> roles;
     ArrayList<Contributor> assignedContributors;
 
     public Project(String name, int daysToComplete, int score, int bestBefore, int noOfRoles) {

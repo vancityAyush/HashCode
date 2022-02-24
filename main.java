@@ -74,6 +74,7 @@ class main{
 
     public static void main(String args[]){
         input();
-
+        Project obj = projectList.get(1);
+        obj.assign(contributorList.get(0), obj.roles.get(0));
     }
 }
