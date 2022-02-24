@@ -13,6 +13,7 @@ public class Project {
         this.score = score;
         this.bestBefore = bestBefore;
         this.noOfRoles = noOfRoles;
+        roles = new ArrayList<>();
     }
 
     void addRole(String role, int levelRequired){

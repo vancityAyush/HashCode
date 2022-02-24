@@ -11,7 +11,7 @@ class main{
 
     public static void input() {
         try{
-            FileInputStream fstream=new FileInputStream("HashCode/input/input_file.txt");
+            FileInputStream fstream=new FileInputStream("input/a_an_example.in.txt");
             DataInputStream in=new DataInputStream(fstream);
             BufferedReader br=new BufferedReader(new InputStreamReader(in));
             String strLine=br.readLine();
@@ -56,7 +56,6 @@ class main{
 
     public static void main(String args[]){
         input();
-        Role role=new Role(5,"anyh");
 
     }
 }
