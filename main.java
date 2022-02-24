@@ -74,12 +74,16 @@ class main{
 
     public static void main(String args[]){
         input();
-        Project obj = projectList.get(1);
-        Contributor anna = contributorList.get(0);
-        Contributor bob = contributorList.get(1);
-        obj.assign(anna, obj.roles.get(1));
-        obj.assign(bob,obj.roles.get(0));
-        anna.complete();
-        bob.complete();
+        Project obj = projectList.get(0);
+//        Contributor anna = contributorList.get(0);
+//        Contributor bob = contributorList.get(1);
+//        obj.assign(anna, obj.roles.get(1));
+//        obj.assign(bob,obj.roles.get(0));
+//        anna.complete();
+//        bob.complete();
+        projectList.sort((o1,o2)->o1.compareTo(o2));
+        ArrayList<Contributor> canBeAssignedTo = obj.canBeAssignedTo(contributorList);
+        System.out.println(canBeAssignedTo.toString());
     }
+
 }

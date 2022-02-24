@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Project {
     String name;
-    int daysToComplete,score,bestBefore,noOfRoles;
+    public int daysToComplete,score,bestBefore,noOfRoles;
     public ArrayList<Role> roles;
     ArrayList<Contributor> assignedContributors;
 
@@ -47,4 +47,19 @@ public class Project {
         return out;
 
     }
+    public int compareTo(Project compare)
+    {
+        return this.bestBefore - compare.bestBefore;
+    }
+    public ArrayList<Contributor> canBeAssignedTo(ArrayList<Contributor> contributorsList){
+        //LOGIC to return contributors that can work on this project
+        ArrayList<Contributor> contributorsThatCanWork= new ArrayList<>();
+        for(Contributor contributor:contributorsList){
+            if(contributor.canWork(this)){
+                contributorsThatCanWork.add(contributor);
+            }
+        }
+        return contributorsThatCanWork;
+    }
+
 }

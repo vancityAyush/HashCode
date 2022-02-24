@@ -1,21 +1,26 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Contributor {
     String name;
     int noOfSkills;
-    ArrayList<Skill> skills;
+    HashMap<String,Skill> skills=new HashMap<>();
     private  Project currentAssigned;
     private Role currentRole;
 
     public Contributor(String name,int noOfSkills){
         this.name=name;
         this.noOfSkills=noOfSkills;
-        skills = new ArrayList<>();
     }
     public void addSkill(String name, int level){
         Skill newSkill = new Skill(name, level);
-        skills.add(newSkill);
+        skills.put(name,newSkill);
+    }
+
+    public void addSkill(Role role){
+        skills.put(role.name,role);
     }
     void assign(Project p, Role r){
         if(currentAssigned == null) {
@@ -24,22 +29,33 @@ public class Contributor {
             currentAssigned = p;
         }
     }
-    boolean canWork(Role role){
-        for(Skill mySkill : skills){
-            if(role.name.equals(mySkill.name)){
-                if(role.level<=mySkill.level)
-                    return true;
-            }
+    public boolean canWork(Role role){
+        Skill skill = skills.get(role.name);
+        if(skill!=null)
+            if(role.level<=skill.level)
+                return true;
+        return false;
+    }
+    public boolean canWork(Project project){
+        for(Role role : project.roles){
+            if(canWork(role) || canWorkWithMentor(role))
+                return  true;
         }
         return false;
     }
+    public ArrayList<Role> rolesEligibleToWork(Project project){
+        ArrayList<Role> rolesEligibleToWork=new ArrayList<>();
+        for(Role role : project.roles){
+            if(canWork(role))
+                rolesEligibleToWork.add(role);
+        }
+        return rolesEligibleToWork;
+    }
     boolean canWorkWithMentor(Role role){
-        for(Skill skill : skills){
-            if(skill.name.equals(role.name)){
+        Skill skill = skills.get(role.name);
+        if(skill!=null)
                 if(role.level-skill.level==1)
                     return true;
-            }
-        }
         if(role.level==1)
             return true;
         return false;
@@ -51,16 +67,14 @@ public class Contributor {
     public void complete() {
         boolean isLevelledUp=false;
         if(currentAssigned != null) {
-            for(Skill skill : skills) {
-                if (currentRole.name.equals(skill.name)) {
+            Skill skill = skills.get(currentRole.name);
+            if(skill!=null)
                     if(currentRole.level >= skill.level) {
                         skill.levelUp();
                         isLevelledUp=true;
-                    }
-                }
             }
             if(currentRole.level==1&&!isLevelledUp){
-                skills.add(currentRole);
+                this.addSkill(currentRole);
                 isLevelledUp=true;
             }
         }
@@ -74,6 +88,6 @@ public class Contributor {
 
     @Override
     public String toString() {
-        return name+"\t"+noOfSkills+"\t";
+        return name;
     }
 }
