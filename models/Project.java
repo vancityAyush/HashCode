@@ -20,5 +20,9 @@ public class Project {
         roles.add(new Role(levelRequired, role));
     }
 
+    @Override
+    public String toString() {
+        return "Project : "+name+"\t"+"Best Before  : "+bestBefore;
 
+    }
 }
