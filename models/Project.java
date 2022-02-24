@@ -16,7 +16,7 @@ public class Project {
         roles = new ArrayList<>();
     }
 
-    void addRole(String role, int levelRequired){
+    public void addRole(String role, int levelRequired){
         roles.add(new Role(levelRequired, role));
     }
 
