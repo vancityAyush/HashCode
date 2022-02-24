@@ -31,4 +31,9 @@ public class Contributor {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return name+"\t"+noOfSkills+"\t";
+    }
 }
