@@ -25,5 +25,7 @@ class main{
 
     public static void main(String args[]){
         input();
+        Role role=new Role(5,"anyh");
+
     }
 }
