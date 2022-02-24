@@ -29,15 +29,21 @@ class main{
                 int nSkills = Integer.parseInt(tokens[1]);
                 //System.out.println(contributorName + " " + nSkills + 1);
                 Contributor contributorObject = new Contributor(contributorName, nSkills);
+                System.out.println(contributorObject.toString());
 
                 for(int j=0; j<nSkills; ++j) {
+                    strLine = br.readLine();
                     tokens = strLine.split(" ");
 
                     String skillName = tokens[0];
+                    System.out.println(skillName);
                     int skillLevel = Integer.parseInt(tokens[1]);
 
                     contributorObject.addSkill(skillName, skillLevel);
+                    System.out.println(skillName);
                 }
+
+
                 //contributorList.add(new Contributor(tokens[0], ));
             }
 
